@@ -37,7 +37,7 @@ function Home() {
   return (
     <>
       <Header />
-      <main>
+      <main className=" font-gotham">
         <nav className="flex flex-row gap-4 p-5 ml-10">
           <button
             className={
@@ -84,7 +84,7 @@ function Home() {
             value={tab1}
             onChange={(e) => setTab1(e.target.value)}
           />
-          <div className={warn1 ? "text-red-500" : "hidden"}>
+          <div className={warn1 ? "text-red-500 mb-3" : "hidden"}>
             Input only number between 1 - 10000
           </div>
           <button
@@ -96,12 +96,18 @@ function Home() {
               setWarn1(false);
               setAppear("Section 2");
               setDisabled("Section 1");
+              generateArray(0);
             }}
           >
             Submit
           </button>
         </section>
         <section className={appear === "Section 2" ? "min-h-3/4" : "hidden"}>
+          <div className="flex flex-wrap w-1000 m-auto gap-1 mt-10">
+            {tableArray.map((item, idx) => {
+              return <TableData item={item} key={idx} />;
+            })}
+          </div>
           <div className="flex justify-center">
             <button
               className="list-none border-black border-2 px-4 py-2 rounded-2xl m-3 active:bg-slate-300"
@@ -110,18 +116,13 @@ function Home() {
               Generate Table
             </button>
           </div>
-          <div className="flex flex-wrap w-1000 m-auto gap-1">
-            {tableArray.map((item, idx) => {
-              return <TableData item={item} key={idx} />;
-            })}
-          </div>
           <div className="text-center m-5">
             You can generate number multiple times, if you feel it is enough you
             can go to the next step by click submit button below.
           </div>
           <div className="flex justify-center">
             <button
-              className="list-none border-black border-2 px-4 py-2 rounded-2xl active:bg-slate-300"
+              className="list-none border-black border-2 px-4 py-2 mb-4 rounded-2xl active:bg-slate-300"
               onClick={() => {
                 setAppear("Section 3");
               }}
@@ -151,6 +152,7 @@ function Home() {
               onClick={() => {
                 setAppear("Section 1");
                 setDisabled("");
+                setTab1(1);
               }}
             >
               Cancelation(Reset to Tab 1)
@@ -160,12 +162,25 @@ function Home() {
         <section
           className={appear === "Specification" ? "min-h-3/4 p-10" : "hidden"}
         >
-          <article>Project Specification</article>
-          <div>This project was built with :</div>
-          <li>
-            React.js as Javascript library(including HTML inside javascript)
-          </li>
-          <li>Tailwind as UI CSS Framework</li>
+          <article>
+            <div>Project Specification</div>
+            <div>This project was built with :</div>
+            <li>
+              React.js as Javascript library(including HTML inside javascript)
+            </li>
+            <li>Tailwind as UI CSS Framework</li>
+          </article>
+          <div>
+            <div>Repository: </div>
+            <div
+              className="cursor-pointer underline"
+              onClick={() => {
+                window.open("https://github.com/Lavly-Work/247Tech", "blank");
+              }}
+            >
+              My Work Github
+            </div>
+          </div>
         </section>
       </main>
       <Footer />

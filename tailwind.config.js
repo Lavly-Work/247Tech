@@ -13,6 +13,9 @@ module.exports = {
       width: {
         1000: "900px",
       },
+      fontFamily: {
+        gotham: ['"Gotham"', "sans-serif"],
+      },
     },
   },
   plugins: [],

@@ -3,7 +3,7 @@ import React from "react";
 function Footer() {
   return (
     <>
-      <main className="flex flex-row justify-around my-8 p-6 border-t-2 border-black">
+      <main className="flex flex-row justify-around py-8 border-t-2 border-black font-gotham">
         <div className="flex justify-center items-center text-6xl">247</div>
         <div className="font-bold">
           <div>This Project created on :</div>
