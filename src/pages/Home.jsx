@@ -7,6 +7,7 @@ function Home() {
   const [disabled, setDisabled] = useState("");
   const [tab1, setTab1] = useState(1);
   const [warn1, setWarn1] = useState(false);
+  const [submit, setSubmit] = useState(true);
   const [tableArray, setTableArray] = useState([]);
   const [small, setSmall] = useState(0);
   const generateArray = (numb) => {
@@ -38,12 +39,12 @@ function Home() {
     <>
       <Header />
       <main className=" font-gotham">
-        <nav className="flex flex-row gap-4 p-5 ml-10">
+        <nav className="flex flex-row py-4 gap-2 ml-2 md:ml-6">
           <button
             className={
               disabled === "Section 1"
-                ? "list-none border-black border-2 px-6 py-2 rounded-2xl bg-slate-400"
-                : "list-none border-black border-2 px-6 py-2 rounded-2xl active:bg-slate-300"
+                ? "list-none border-black border-2 py-1 px-2 rounded-2xl bg-slate-400 md:px-4"
+                : "list-none border-black border-2 py-1 px-2 rounded-2xl active:bg-slate-300 md:px-4"
             }
             disabled={disabled === "Section 1"}
             onClick={() => setAppear("Section 1")}
@@ -51,20 +52,20 @@ function Home() {
             Tab 1
           </button>
           <button
-            className="list-none border-black border-2 px-6 py-2 rounded-2xl active:bg-slate-300"
+            className="list-none border-black border-2 py-1 px-2 rounded-2xl active:bg-slate-300 md:px-4"
             onClick={() => setAppear("Section 2")}
           >
             Tab 2
           </button>
           <button
-            className="list-none border-black border-2 px-6 py-2 rounded-2xl active:bg-slate-300"
+            className="list-none border-black border-2 py-1 px-2 rounded-2xl active:bg-slate-300 md:px-4"
             disabled={false}
             onClick={() => setAppear("Section 3")}
           >
             Tab 3
           </button>
           <button
-            className="list-none border-black border-2 px-6 py-2 rounded-2xl active:bg-slate-300"
+            className="list-none border-black border-2 py-1 px-2 rounded-2xl active:bg-slate-300 md:px-4"
             disabled={false}
             onClick={() => setAppear("Specification")}
           >
@@ -82,7 +83,11 @@ function Home() {
           <input
             className="text-center py-2 my-3 border-2 border-black rounded-md"
             value={tab1}
-            onChange={(e) => setTab1(e.target.value)}
+            type="number"
+            onChange={(e) => {
+              setWarn1(false);
+              setTab1(e.target.value);
+            }}
           />
           <div className={warn1 ? "text-red-500 mb-3" : "hidden"}>
             Input only number between 1 - 10000
@@ -90,20 +95,18 @@ function Home() {
           <button
             className="list-none border-black border-2 px-4 py-2 rounded-2xl active:bg-slate-300"
             onClick={() => {
-              if (tab1 < 1 || tab1 > 10000) {
-                return setWarn1(true);
-              }
-              setWarn1(false);
+              if (tab1 < 1 || tab1 > 10000) return setWarn1(true);
               setAppear("Section 2");
               setDisabled("Section 1");
               generateArray(0);
+              setSubmit(true);
             }}
           >
             Submit
           </button>
         </section>
         <section className={appear === "Section 2" ? "min-h-3/4" : "hidden"}>
-          <div className="flex flex-wrap w-1000 m-auto gap-1 mt-10">
+          <div className="flex flex-wrap gap-1 mt-4 justify-center">
             {tableArray.map((item, idx) => {
               return <TableData item={item} key={idx} />;
             })}
@@ -111,7 +114,10 @@ function Home() {
           <div className="flex justify-center">
             <button
               className="list-none border-black border-2 px-4 py-2 rounded-2xl m-3 active:bg-slate-300"
-              onClick={() => generateArray(tab1)}
+              onClick={() => {
+                generateArray(tab1);
+                setSubmit(false);
+              }}
             >
               Generate Table
             </button>
@@ -122,6 +128,7 @@ function Home() {
           </div>
           <div className="flex justify-center">
             <button
+              disabled={submit}
               className="list-none border-black border-2 px-4 py-2 mb-4 rounded-2xl active:bg-slate-300"
               onClick={() => {
                 setAppear("Section 3");
@@ -147,7 +154,7 @@ function Home() {
               Click Here!
             </button>
             <button
-              className="list-none border-black border-2 px-6 py-2 rounded-2xl active:bg-slate-300"
+              className="list-none border-black border-2 py-1 px-2 rounded-2xl active:bg-slate-300"
               disabled={false}
               onClick={() => {
                 setAppear("Section 1");

@@ -3,12 +3,14 @@ import React from "react";
 function Header() {
   return (
     <>
-      <main className="flex flex-row justify-between p-5 border-b-2 border-black font-gotham bg-slate-400">
-        <div className="font-extrabold text-2xl">247</div>
-        <div className="font-bold text-2xl pr-4">Zanuar Bagus Ramadhan</div>
-        <div className="font-bold text-2xl pr-4">
+      <main className="flex flex-row justify-center items-center py-6 gap-1 border-b-2 border-black font-gotham bg-slate-600 md:justify-around">
+        <div className="font-extrabold text-2xl text-white">247</div>
+        <div className="font-bold text-2xl px-2 text-orange-500">
+          Zanuar Bagus Ramadhan
+        </div>
+        <div className="font-bold text-2xl">
           <svg
-            class="w-6 h-6 text-blue-500 fill-current cursor-pointer"
+            className="w-6 h-6 text-blue-500 fill-current cursor-pointer"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 448 512"
             onClick={() => {
