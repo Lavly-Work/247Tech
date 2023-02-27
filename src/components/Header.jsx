@@ -4,7 +4,7 @@ function Header() {
   return (
     <>
       <main className="flex flex-row justify-center items-center py-6 gap-1 border-b-2 border-black font-gotham bg-slate-600 md:justify-around">
-        <div className="font-extrabold text-2xl text-white">247</div>
+        <div className="font-extrabold text-2xl text-white"></div>
         <div className="font-bold text-2xl px-2 text-orange-500">
           Zanuar Bagus Ramadhan
         </div>
